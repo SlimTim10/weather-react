@@ -6,7 +6,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      description: '',
+      weather: '',
       temperature: ''
     };
   }
@@ -31,7 +31,7 @@ class App extends React.Component {
           console.log(`Current weather: ${data.weather[0].description}`);
           console.log(`Current temperature: ${data.main.temp}`);
           this.setState({
-            description: data.weather[0].description,
+            weather: data.weather[0].description,
             temperature: data.main.temp
           });
         } else {
@@ -53,7 +53,7 @@ class App extends React.Component {
         </aside>
 
         <main>
-          <article>The weather is: <span id="current-weather">{this.state.description}</span></article>
+          <article>The weather is: <span id="current-weather">{this.state.weather}</span></article>
           <article>The temperature is: <span id="current-temperature">{this.state.temperature}</span></article>
         </main>
       </div>
