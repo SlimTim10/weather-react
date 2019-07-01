@@ -14,7 +14,7 @@ class App extends React.Component {
   getWeather = (event) => {
     event.preventDefault();
     
-    const apiKey = 'bd06dc385ab59408ad2f37e42c6b9638';
+    const apiKey = '';
     const rootEndpoint = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}`;
 
     const city = event.target.elements.city.value;
