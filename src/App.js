@@ -27,12 +27,17 @@ class App extends React.Component {
     fetch(endpoint)
       .then(response => response.json())
       .then(data => {
-        console.log(`Current weather: ${data.weather[0].description}`);
-        console.log(`Current temperature: ${data.main.temp}`);
-        this.setState({
-          description: data.weather[0].description,
-          temperature: data.main.temp
-        });
+        if (data.weather && data.weather.length > 0 && data.main) {
+          console.log(`Current weather: ${data.weather[0].description}`);
+          console.log(`Current temperature: ${data.main.temp}`);
+          this.setState({
+            description: data.weather[0].description,
+            temperature: data.main.temp
+          });
+        } else {
+          console.error(`Code: ${data.cod}`);
+          console.error(`Message: ${data.message}`);
+        }
       });
   }
   
