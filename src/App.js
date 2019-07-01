@@ -2,10 +2,19 @@ import React from 'react';
 import './App.css';
 
 class App extends React.Component {
-  getWeather = event => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: '',
+      temperature: ''
+    };
+  }
+  
+  getWeather = (event) => {
     event.preventDefault();
     
-    const apiKey = '';
+    const apiKey = 'bd06dc385ab59408ad2f37e42c6b9638';
     const rootEndpoint = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}`;
 
     const city = event.target.elements.city.value;
@@ -20,6 +29,10 @@ class App extends React.Component {
       .then(data => {
         console.log(`Current weather: ${data.weather[0].description}`);
         console.log(`Current temperature: ${data.main.temp}`);
+        this.setState({
+          description: data.weather[0].description,
+          temperature: data.main.temp
+        });
       });
   }
   
@@ -35,8 +48,8 @@ class App extends React.Component {
         </aside>
 
         <main>
-          <article>The weather is: <span id="current-weather"></span></article>
-          <article>The temperature is: <span id="current-temperature"></span></article>
+          <article>The weather is: <span id="current-weather">{this.state.description}</span></article>
+          <article>The temperature is: <span id="current-temperature">{this.state.temperature}</span></article>
         </main>
       </div>
     );
